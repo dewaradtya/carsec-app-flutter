@@ -2,7 +2,8 @@ import 'package:uji_level/Provider/cart_provider.dart';
 import 'package:uji_level/Provider/favorite_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'screens/nav_bar_screen.dart';
+// import 'screens/nav_bar_screen.dart';
+import 'screens/landing_page.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => CartProvider()),
-            ChangeNotifierProvider(create: (_) => FavoriteProvider()),
+          ChangeNotifierProvider(create: (_) => FavoriteProvider()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             textTheme: GoogleFonts.mulishTextTheme(),
           ),
-          home: const BottomNavBar(),
+          home: const GetStartedScreen(),
         ),
       );
 }

@@ -1,15 +1,29 @@
+// check_out.dart
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../Provider/cart_provider.dart';
 import '../../constants.dart';
 
 class CheckOutBox extends StatelessWidget {
-  const CheckOutBox({
-    super.key,
-  });
+  const CheckOutBox({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final provider = CartProvider.of(context);
+    final provider = Provider.of<CartProvider>(context);
+
+    void checkout() {
+      // Clear the cart
+      provider.clearCart();
+
+      // Show a Snackbar notification
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Your order is being processed!'),
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    }
+
     return Container(
       height: 300,
       width: double.infinity,
@@ -100,7 +114,7 @@ class CheckOutBox extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: checkout, // Call checkout function
             style: ElevatedButton.styleFrom(
               backgroundColor: kprimaryColor,
               minimumSize: const Size(double.infinity, 55),
